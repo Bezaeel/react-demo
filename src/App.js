@@ -1,24 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import Tweet from './Tweet';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+function App(){
+
+  // state in react
+  // [<condition>, <command>] = useState(<default condition>)
+  const [isRed, setRed] = useState(false);
+  const [count, setCount] = useState(0);
+
+  // regular js function to handle command
+  const increment = () =>{
+    setCount(count +1);
+    setRed(!isRed);
+  };
+
+  const [users, setUsers] = useState([
+    {name: "Kelvin", likes: "20K"}
+    , {name: "Sao", likes: "20K"}
+    , {name: "Timi", likes: "20K"}
+    , {name: "Perfoo", likes: "20K"}
+  ]);
+
+  return(
+    <div className='App'>
+      {/* set name an likes props for tweet component */}
+      {/* <Tweet name="Kelvin" likes="200K"/>
+      <Tweet name="Sao" likes="50K"/>
+      <Tweet name="Perfoo" likes="2K"/>
+      <Tweet name="Timi" likes="102K"/> */}
+      {/* <div>
+        <h1 className ={isRed ? "red" : ""}>Change colour</h1>
+        <button onClick={increment}>+</button>
+        <h3>{count}</h3>
+      </div> */}
+
+
+      {users.map(user => (
+        <Tweet name={user.name} likes={user.likes}/>
+      ))}
+
     </div>
   );
 }
